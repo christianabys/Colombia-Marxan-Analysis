@@ -4,7 +4,7 @@
 # In[ ]:
 
 
-##Systematic Conservation planning in Colombia: Your own Marxan Analysis
+##Systematic Conservation planning in Colombia: Marxan Analysis
 
 
 # In[78]:
@@ -26,16 +26,16 @@ from rasterstats import zonal_stats
 
 #define folder functions
 def wf(x):
-    return("/Users/christianabys/Desktop/School/Boston_University/2020/Data_Science/ps2/Colombia/" + x)
+    return("filepath_string" + x)
 def bf(x):
-    return("/Users/christianabys/Desktop/School/Boston_University/2020/Data_Science/ps1/Colombia/processed/BioModelos/" + x)
+    return("filepath_string" + x)
 
 
 # In[80]:
 
 
 #read in municipos shapefile
-mun = gpd.read_file("/Users/christianabys/Desktop/School/Boston_University/2020/Data_Science/ps2/Colombia/input/Municipios.shp",encoding = 'utf-8')
+mun = gpd.read_file("shapefile_planning_unit_filepath",encoding = 'utf-8')
 #subset wanted rows
 mun2 = mun[~mun['COD_DEPART'].isnull()]
 mun3 = mun2[~mun['COD_DEPART'].eq('88')]
@@ -54,7 +54,7 @@ mun['cost'] = mun['AREA_KM']
 mun['status'] = 0
 #pu_dat to csv
 pu_dat = mun[['cost','status']]
-pu_dat.to_csv("/Users/christianabys/Desktop/School/Boston_University/2020/Data_Science/ps2/Colombia/mun/input/pu.dat",index=True)
+pu_dat.to_csv(wf("pu.dat",index=True))
 #puplayer to dat
 mun[['geometry']].to_file('/Users/christianabys/Desktop/School/Boston_University/2020/Data_Science/ps2/Colombia/mun/pulayer/pulayer.shp', index = True)
 
